@@ -32,7 +32,7 @@ defmodule DistElixir.Registry do
   end
 
   def handle_call({:register, name}, _from, state) do
-    IO.puts "Registering the new process"
+    IO.puts "Attempting to register the new process"
     case start_via_swarm(name) do
       {:ok, pid} ->
         {:reply, {:ok, pid}, state}

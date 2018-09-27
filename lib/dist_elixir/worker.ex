@@ -12,6 +12,7 @@ defmodule DistElixir.Worker do
 
   def register(name) do
     IO.puts "Registering"
+    
     {:ok, _pid} = start_link(name)
   end
 

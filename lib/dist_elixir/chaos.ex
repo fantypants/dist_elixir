@@ -12,23 +12,26 @@ defmodule DistElixir.Chaos do
   def init(_) do
     #testing if when the conenction drops it resumes on the same connection
     Process.send_after(self(), :random_start, 1)
-    Process.send_after(self(), :random_kill, @kill_delay)
+    #Process.send_after(self(), :random_kill, @kill_delay)
     {:ok, :ok}
   end
 
   def handle_info(:random_start, state) do
     DistElixir.Registry.register(random_worker())
-    Process.send_after(self(), :random_start, 1)
+    #Process.send_after(self(), :random_start, 1)
     {:noreply, state}
   end
 
   def handle_info(:random_kill, state) do
+    IO.puts "Process is killed"
     case :pg2.get_local_members(DistElixir.pg2_group()) do
       [pid | _] when is_pid(pid) -> stop_server(pid)
       _ -> nil
     end
 
-    Process.send_after(self(), :random_kill, @kill_delay)
+    #Process.send_after(self(), :random_kill, @kill_delay)
+    # As soon as process dies, restart the process
+    Process.send_after(self(), :random_start, 1)
     {:noreply, state}
   end
 
@@ -44,8 +47,6 @@ defmodule DistElixir.Chaos do
       5 -> {Process, :exit, {:error, :rand_kill}}
     end
     name = DistElixir.Worker.get_name(pid)
-    #IO.puts "Exiting the Server"
-    #Logger.error("[Chaos] stopping #{name} with: #{m}.#{f}(#{inspect(pid)}, #{inspect(reason)})")
     apply(m, f, [pid, reason])
   end
 end
