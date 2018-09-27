@@ -1,0 +1,10 @@
+{application,distelixir,
+             [{description,"distelixir"},
+              {modules,['Elixir.DistElixir','Elixir.DistElixir.Chaos',
+                        'Elixir.DistElixir.Registry',
+                        'Elixir.DistElixir.Router',
+                        'Elixir.DistElixir.Worker']},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {applications,[kernel,stdlib,elixir,logger,libcluster,swarm]},
+              {mod,{'Elixir.DistElixir',[]}}]}.

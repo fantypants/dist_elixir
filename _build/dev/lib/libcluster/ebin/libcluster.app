@@ -1,0 +1,12 @@
+{application,libcluster,
+             [{description,"Automatic Erlang cluster formation and management for Elixir/Erlang applications"},
+              {modules,['Elixir.Cluster.App','Elixir.Cluster.Logger',
+                        'Elixir.Cluster.Strategy',
+                        'Elixir.Cluster.Strategy.Epmd',
+                        'Elixir.Cluster.Strategy.Gossip',
+                        'Elixir.Cluster.Strategy.Kubernetes',
+                        'Elixir.Cluster.Strategy.State']},
+              {registered,[]},
+              {vsn,"2.0.4"},
+              {applications,[kernel,stdlib,elixir,logger,inets,poison]},
+              {mod,{'Elixir.Cluster.App',[]}}]}.
