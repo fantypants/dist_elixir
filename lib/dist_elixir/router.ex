@@ -21,7 +21,7 @@ defmodule DistElixir.Router do
 
     get "/" do
       conn
-      |> send_resp(200, "Iam Server #{Node.self()}")
+      |> send_resp(200, "I Am Server the Master Server #{Node.self()}")
       |> halt
     end
 end

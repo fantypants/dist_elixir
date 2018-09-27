@@ -31,7 +31,6 @@ defmodule Leader.Mixfile do
     [
       {:libcluster, ">= 0.0.0"},
       {:swarm, ">= 0.0.0"},
-      {:socket, "~> 0.3"},
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 1.5"},
       {:poison, "~> 3.1"}
